@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <webLinks>
+        <fullName>Sign_with_Docusign</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send with DocuSign</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>{!URLFOR(&apos;/apex/dsfs__DocuSign_CreateEnvelope&apos;, null, [SourceID = litify_pm__Intake__c.Id])}
+&amp;CES=&apos;Retainer agreement for {!litify_pm__Intake__c.litify_pm__Display_Name__c}&apos;
+&amp;CEM=Please+sign+for{!litify_pm__Intake__c.litify_pm__Display_Name__c}
+&amp;CRL=Email~{!litify_pm__Intake__c.litify_pm__Email__c};FirstName~{!litify_pm__Intake__c.litify_pm__First_Name__c};LastName~{!litify_pm__Intake__c.litify_pm__Last_Name__c};RoutingOrder~1;Role~Signer+1
+&amp;LA=0
+&amp;LF=0</url>
+    </webLinks>
+</CustomObject>

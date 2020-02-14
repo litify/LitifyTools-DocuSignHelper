@@ -1,0 +1,68 @@
+<apex:page standardController="litify_pm__Matter__c">
+<apex:includeScript value="/apex/dsfs__DocuSign_JavaScript" />
+<script>
+//********* Option Declarations (Do not modify )*********//
+var RC = '';var RSL='';var RSRO='';var RROS='';var CCRM='';var CCTM='';var CCNM='';var CRCL=''; var CRL='';var OCO='';var DST='';var LA='';var CEM='';var CES='';var STB='';var SSB='';var SES='';var SEM='';var SRS='';var SCS ='';var RES='';
+//*************************************************//
+// Modify individual options here:
+// Related Content (default no related content)
+RC = '';
+// Recipient Signer Limit (default no limit)
+RSL = ''; //Ex: '3'
+// Recipient Starting Routing Order (default 1)
+RSRO = ''; // Ex: '1'
+// Recipient Routing Order Sequential (default not sequential)
+RROS = ''; //Ex: '1' 
+// Custom Contact Role Map (default config role)
+CCRM = 'R1~Signer 1'; //Ex: 'Decision Maker~Signer1; Economic Buyer~Carbon Copy'
+// Custom Contact Type Map (default Signer)
+CCTM = 'R1~Signer'; //Ex: 'Decision Maker~Signer; Economic Buyer~Carbon Copy'
+// Custom Contact Note Map (default no note)
+CCNM = ''; //Ex: 'Decision Maker~Note for DM; Economic Buyer~Note For EB; DEFAULT_NOTE~Default Note'
+// Custom Related Contact List (default object contact)
+CRCL = ''; //Ex: 'MyContacts__r,Email~Email__c; FirstName~First_Name__c; LastName~Last_Name__c; Role~Role__c,LoadDefaultContacts~0'
+// Custom Recipient List
+CRL = 'Email~{!litify_pm__Matter__c.litify_pm__Client__r.litify_pm__Email__c};FirstName~{!litify_pm__Matter__c.litify_pm__Client__r.litify_pm__First_Name__c };LastName~{!litify_pm__Matter__c.litify_pm__Client__r.litify_pm__Last_Name__c};Role~R1;RoutingOrder~1';
+OCO = ''; //Required with signing groups
+// One Click Option (default edit envelope screen)
+OCO = ''; //Ex: Tag (or Send)
+// Load Attachments (default on)
+LA = ''; //Ex: '0'
+// Custom Email Message (default in config)
+CEM = ''; //Ex: 'Envelope sent by [FirstName] [LastName] ([Email])!'
+// Custom Email Subject (default in config)
+CES = ''; //Ex: 'Re: Opportunity Name: '
+// Show Tag Button (default in config)
+STB = ''; //Ex: '1'
+// Show Send Button (default in config)
+SSB = ''; //Ex: '1' 
+// Show Email Subject (default in config)
+SES = ''; //Ex: '1' 
+// Show Email Message (default in config)
+SEM = ''; //Ex: '1' 
+// Show Reminder/Expire (default in config)
+SRS = ''; //Ex: '1' 
+// Show Chatter (default in config)
+SCS = ''; //Ex: '1'
+// Reminder and Expiration Settings
+RES = ''; //Ex: '0,1,2,0,120,3'
+//********* Page Callout (Do not modify) *********//
+var docusignUrl = "{!URLFOR('/apex/dsfs__DocuSign_CreateEnvelope', null, [
+SourceID = litify_pm__Matter__c.Id,
+CCRM = 'R1~Signer 1',
+CCTM = 'R1~Signer',
+LA = '0',
+LF = '0',
+OCO = ''
+]
+)}&RC="+RC+"&RSL="+RSL+"&RSRO="+RSRO+"&RROS="+RROS+"&CCRM="+CCRM+"&CCTM="+CCTM+"&CRCL="+CRCL+"&CRL="+CRL+"&OCO="+OCO+"&DST="+DST+"&CCNM="+CCNM+"&LA="+LA+"&CEM="+CEM+"&CES="+CES+"&SRS="+SRS+"&STB="+STB+"&SSB="+SSB+"&SES="+SES+"&SEM="+SEM+"&SRS="+SRS+"&SCS="+SCS+"&RES="+RES;
+console.log('url', docusignUrl);
+if(sforce) {
+    // sf1 
+    sforce.one.navigateToURL(docusignUrl);
+} else {
+    window.location.href = docusignUrl;
+}
+//*******************************************//
+</script>
+</apex:page>
